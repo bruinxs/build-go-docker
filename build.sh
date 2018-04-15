@@ -80,5 +80,5 @@ done
 
 #docker build
 cd $CWD
-[ -z $FROM ] && cat Dockerfile > build.Dockerfile || sed "s#golang:1.9-alpine#$FROM#g" Dockerfile > build.Dockerfile
+[ -z $FROM ] && cat Dockerfile > build.Dockerfile || sed "1s#^FROM.*#FROM $FROM#g" Dockerfile > build.Dockerfile
 docker build -t $IMAGE . -f build.Dockerfile
