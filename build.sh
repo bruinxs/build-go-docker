@@ -45,6 +45,7 @@ for dir in ${allPaths[@]}; do
     cd $dir
     list=`govendor list | awk '{print $2}'`
     for pkg in ${list[@]}; do
+        [ ! -d $GOPATH/src/$pkg ] && go get $pkg
         rootPkg=`echo $pkg | grep -o '^[0-9a-zA-Z\.\_-]\+/[0-9a-zA-Z\.\_-]\+/\?[0-9a-zA-Z\.\_-]\+\?'`
         allPkgs+=($rootPkg)
     done
@@ -70,7 +71,6 @@ for pkg in ${pkgSet[@]}; do
     fi
 
     echo $pkg
-    [ ! -d $GOPATH/src/$pkg ] && go get $pkg
     from=$GOPATH/src/$pkg
     to=`dirname $srcDir/$pkg`
     mkdir -p $to
