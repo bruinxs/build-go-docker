@@ -21,7 +21,8 @@ while getopts "hd:p:e:t:f:" OPT; do
             -d get the depend packages packages by the point packages
             -p point the golang packages
             -e exclude golang packages
-            -t dokcer build image target"
+            -t dokcer build image target
+            -f image the build image from"
             ;;
     esac
 done
